@@ -10,8 +10,7 @@ readme = "README.md"
 authors = [{ name = "{{ cookiecutter.author_name }}" }]
 requires-python = ">={{ cookiecutter.python_version }}"
 dependencies = [
-    "click",        # Toujours utile pour faire des CLI
-    "python-dotenv" # Pour gérer les .env
+    "python-dotenv"
 ]
 
 [project.optional-dependencies]
