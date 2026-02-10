@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{ cookiecutter.project_slug }}"
+version = "0.1.0"
+description = "{{ cookiecutter.description }}"
+readme = "README.md"
+authors = [{ name = "{{ cookiecutter.author_name }}" }]
+requires-python = ">={{ cookiecutter.python_version }}"
+dependencies = [
+    "click",        # Toujours utile pour faire des CLI
+    "python-dotenv" # Pour gérer les .env
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff"
+]
+
+# --- CONFIGURATION ---
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py{{ cookiecutter.python_version.replace('.', '') }}"
+
+[tool.ruff.lint]
+select = [
+    "E",   # Erreurs de style (pycodestyle)
+    "F",   # Erreurs logiques (pyflakes)
+    "I",   # Tri des imports (isort)
+    "UP",  # Alerte syntaxe Python périmée
+    "B",   # Détecte les bugs potentiels (flake8-bugbear)
+]
+fixable = ["ALL"] # Autorise ruff à corriger automatiquement tout ce qu'il peut
