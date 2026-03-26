@@ -2,7 +2,7 @@
   "project_name": "My Project",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
   "author_name": "Ton Prénom",
-  "python_version": ["3.9", "3.10", "3.11"],
+  "python_version": ["3.9", "3.10", "3.11", "3.12"],
   "include_docker": ["yes", "no"],
   "description": "Python project."
 }
