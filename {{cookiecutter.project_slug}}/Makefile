@@ -1,4 +1,4 @@
-.PHONY: all install add add-dev run test lint clean
+.PHONY: all install add add-dev run test lint pre-commit clean
 # Check that uv is available
 UV := $(shell command -v uv 2> /dev/null)
 
@@ -26,6 +26,9 @@ test:
 
 lint:
 	uv run ruff check --fix .
+
+pre-commit:
+	uv run pre-commit install
 
 clean:
 	rm -rf .venv

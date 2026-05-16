@@ -5,11 +5,12 @@
 ## Quick start
 
 ```bash
-make install   # install dependencies
-make run       # run the application
-make test      # run tests
-make lint      # lint and auto-fix with ruff
-make clean     # remove virtualenv, caches and build artifacts
+make install      # install dependencies
+make pre-commit   # install pre-commit hooks (run once after cloning)
+make run          # run the application
+make test         # run tests
+make lint         # lint and auto-fix with ruff
+make clean        # remove virtualenv, caches and build artifacts
 ```
 
 ## uv cheatsheet
