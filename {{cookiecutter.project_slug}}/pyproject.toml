@@ -13,10 +13,10 @@ dependencies = [
 [project.scripts]
 "{{ cookiecutter.project_slug }}" = "src.main:main"
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "pytest",
-    "ruff"
+    "ruff",
 ]
 
 [tool.ruff]
@@ -25,10 +25,10 @@ target-version = "py{{ cookiecutter.python_version.replace('.', '') }}"
 
 [tool.ruff.lint]
 select = [
-    "E",   # Erreurs de style (pycodestyle)
-    "F",   # Erreurs logiques (pyflakes)
-    "I",   # Tri des imports (isort)
-    "UP",  # Alerte syntaxe Python périmée
-    "B",   # Détecte les bugs potentiels (flake8-bugbear)
+    "E",   # Style errors (pycodestyle)
+    "F",   # Logic errors (pyflakes)
+    "I",   # Import sorting (isort)
+    "UP",  # Deprecated Python syntax (pyupgrade)
+    "B",   # Likely bugs (flake8-bugbear)
 ]
-fixable = ["ALL"] # Autorise ruff à corriger automatiquement tout ce qu'il peut
+fixable = ["ALL"] # Allow ruff to auto-fix everything it can

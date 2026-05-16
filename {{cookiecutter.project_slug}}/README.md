@@ -2,14 +2,29 @@
 
 {{ cookiecutter.description }}
 
-## Installation rapide
-1. Installer les dépendances :
+## Quick start
+
 ```bash
-* `make install` : Installe le projet en mode éditable et les dépendances de dev.
-* `make run` : Lance le point d'entrée du projet '(src/main.py)'.
-* `make lint` : Lance le linter Ruff pour analyser et corriger le code.
-* `make test` : Lance les tests unitaires via Pytest.
-* `make clean` : Supprime les caches (pycache, .pytest_cache) et les artefacts de build.
+make install   # install dependencies
+make run       # run the application
+make test      # run tests
+make lint      # lint and auto-fix with ruff
+make clean     # remove virtualenv, caches and build artifacts
 ```
+
+## uv cheatsheet
+
+| Command | Description |
+|---|---|
+| `uv sync` | Install all dependencies from lockfile |
+| `uv sync --no-dev` | Install without dev dependencies |
+| `uv add <package>` | Add a dependency — updates pyproject.toml and uv.lock automatically |
+| `uv add --dev <package>` | Add a dev dependency |
+| `uv remove <package>` | Remove a dependency |
+| `uv lock --check` | Verify lockfile is up to date with pyproject.toml |
+| `uv run <command>` | Run a command inside the virtual environment |
+| `uv python install <version>` | Install a specific Python version |
+
 ---
-Auteur : {{ cookiecutter.author_name }}
+
+Author: {{ cookiecutter.author_name }}

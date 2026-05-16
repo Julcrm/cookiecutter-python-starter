@@ -1,33 +1,30 @@
+"""Application entry point.
 
-
-"""
-Ce module est le point d'entrée de l'application.
-Il charge les variables d'environnement, configure le logging et démarre la logique principale.
+Loads environment variables, configures logging, and runs the main logic.
 """
 import os
 from dotenv import load_dotenv
 from loguru import logger
 
 
-def main():
-    """
-    Fonction principale pour exécuter la logique de l'application.
+def main() -> None:
+    """Run the application.
 
-    Étapes:
-    1. Charger les variables d'environnement.
-    2. Configurer le logging.
-    3. Exécuter la logique métier.
+    Steps:
+    1. Load environment variables from .env.
+    2. Configure structured logging.
+    3. Execute business logic.
     """
-    # 1. Charge les variables d'environnement
+    # Load environment variables from .env file
     load_dotenv()
 
-    # 2. Récupère une variable (exemple)
+    # Read runtime environment (defaults to "Local")
     env = os.getenv("ENV_NAME", "Local")
 
-    # 3. Log structuré (mieux que print)
+    # Structured log — prefer this over print in production
     logger.info(f"Starting {{ cookiecutter.project_name }} in {env} mode...")
 
-    # Ton code ici
+    # Your code here
     print("Hello from the High-Level Template!")
 
 

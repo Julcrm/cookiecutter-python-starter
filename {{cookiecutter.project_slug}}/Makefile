@@ -1,10 +1,10 @@
 .PHONY: all install add add-dev run test lint clean
-# Vérifie si uv est installé
+# Check that uv is available
 UV := $(shell command -v uv 2> /dev/null)
 
 check_uv:
 ifndef UV
-	$(error "uv n'est pas installé !")
+	$(error "uv is not installed")
 endif
 
 install:
@@ -19,7 +19,7 @@ add-dev:
 	uv add --dev $(lib)
 
 run:
-	uv run src/main.py
+	uv run {{ cookiecutter.project_slug }}
 
 test:
 	uv run pytest tests/

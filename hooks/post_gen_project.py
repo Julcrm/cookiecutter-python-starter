@@ -1,34 +1,37 @@
+"""Post-generation hook for Cookiecutter.
 
-
+Runs after project generation to remove optional files, initialise Git,
+and install dependencies.
 """
-Ce module contient le hook de post-génération pour Cookiecutter.
-Il s'exécute après la génération du projet pour initialiser Git et installer les dépendances.
-"""
+import shutil
 import subprocess
-import sys
+from pathlib import Path
 
 
-def run_command(command):
-    """
-    Exécute une commande shell et affiche un message d'erreur en cas d'échec.
-
-    Args:
-        command (str): La commande à exécuter.
-    """
+def run_command(command: str) -> None:
+    """Run a shell command, printing an error message on failure."""
     try:
         subprocess.check_call(command, shell=True)
     except subprocess.CalledProcessError:
-        print(f"[!] Erreur lors de l'exécution de : {command}")
+        print(f"[!] Command failed: {command}")
 
 
+# Remove .github/ if GitHub Actions were not requested
+if "{{ cookiecutter.include_github_actions }}" == "no":
+    shutil.rmtree(Path(".github"), ignore_errors=True)
+    print("[~] Skipped GitHub Actions (.github/ removed)")
 
-if __name__ == "__main__":
-    print("\n[+] Initialisation du dépôt Git...")
-    run_command("git init")
-    run_command("git add .")
-    run_command("git commit -m 'feat: Initial commit from template'")
+# Remove Dockerfile if Docker was not requested
+if "{{ cookiecutter.include_docker }}" == "no":
+    Path("Dockerfile").unlink(missing_ok=True)
+    print("[~] Skipped Docker (Dockerfile removed)")
 
-    print("\n[+] Installation des dépendances avec uv...")
-    run_command("uv sync")
+print("\n[+] Initialising Git repository...")
+run_command("git init")
+run_command("git add .")
+run_command("git commit -m 'feat: initial commit from template'")
 
-    print("\n[v] Projet prêt ! Tape 'cd {{ cookiecutter.project_slug }}'")
+print("\n[+] Installing dependencies with uv...")
+run_command("uv sync")
+
+print("\n[✓] Project ready. Run: cd {{ cookiecutter.project_slug }}")
