@@ -11,4 +11,7 @@ RUN uv sync --frozen --no-dev
 
 COPY . .
 
+RUN adduser --disabled-password --gecos '' appuser
+USER appuser
+
 CMD ["uv", "run", "{{ cookiecutter.project_slug }}"]

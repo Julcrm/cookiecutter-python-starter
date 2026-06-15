@@ -7,24 +7,24 @@ ifndef UV
 	$(error "uv is not installed")
 endif
 
-install:
+install: check_uv
 	uv sync
 
-add:
+add: check_uv
 	@test -n "$(lib)" || (echo "Usage: make add lib=pandas" && exit 1)
 	uv add $(lib)
 
-add-dev:
+add-dev: check_uv
 	@test -n "$(lib)" || (echo "Usage: make add-dev lib=pytest" && exit 1)
 	uv add --dev $(lib)
 
-run:
+run: check_uv
 	uv run {{ cookiecutter.project_slug }}
 
-test:
+test: check_uv
 	uv run pytest tests/
 
-lint:
+lint: check_uv
 	uv run ruff check --fix .
 
 pre-commit:

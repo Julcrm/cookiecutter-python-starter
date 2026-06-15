@@ -26,12 +26,18 @@ if "{{ cookiecutter.include_docker }}" == "no":
     Path("Dockerfile").unlink(missing_ok=True)
     print("[~] Skipped Docker (Dockerfile removed)")
 
+print("\n[+] Installing dependencies with uv...")
+run_command("uv sync")
+
+print("\n[+] Installing pre-commit hooks...")
+run_command("uv run pre-commit install")
+
 print("\n[+] Initialising Git repository...")
 run_command("git init")
 run_command("git add .")
 run_command("git commit -m 'feat: initial commit from template'")
 
-print("\n[+] Installing dependencies with uv...")
-run_command("uv sync")
+print("\n[+] Creating dev branch...")
+run_command("git checkout -b dev")
 
 print("\n[✓] Project ready. Run: cd {{ cookiecutter.project_slug }}")

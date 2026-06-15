@@ -2,6 +2,7 @@
 
 A Python project template for production-ready scripts and services.
 Preconfigured with uv, Ruff, pytest, pre-commit, and GitHub Actions CI.
+The generation hook initialises Git, installs dependencies, and checks out a `dev` branch automatically.
 
 ---
 
@@ -42,6 +43,7 @@ make install
 | `make run` | Run the application |
 | `make test` | Run the test suite with pytest |
 | `make lint` | Check and auto-fix code with ruff |
+| `make pre-commit` | Install pre-commit hooks |
 | `make add lib=pandas` | Add a runtime dependency |
 | `make add-dev lib=httpx` | Add a dev dependency |
 | `make clean` | Remove virtualenv, caches and build artifacts |
@@ -60,7 +62,8 @@ my_project/
 │   └── test_main.py
 ├── .github/
 │   └── workflows/
-│       └── ci.yml          # lint + test on push / PR
+│       └── ci.yml          # lint + format check + test on push/PR (main & dev)
+├── .dockerignore
 ├── .env.example
 ├── .gitignore
 ├── .pre-commit-config.yaml

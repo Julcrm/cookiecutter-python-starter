@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from loguru import logger
 
 
-def main() -> None:
+def main():
     """Run the application.
 
     Steps:
